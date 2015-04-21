@@ -11,7 +11,7 @@ import dynamic.controller.DatabaseController;
  */
 public class DatabaseFrame extends JFrame
 {
-	private DatabasePanel mainPanel;
+	private DynamicDataPanel mainPanel;
 	
 	/**
 	 * Constructor for this class
@@ -19,7 +19,7 @@ public class DatabaseFrame extends JFrame
 	 */
 	public DatabaseFrame(DatabaseController mainController)
 	{
-		mainPanel = new DatabasePanel(mainController);
+		mainPanel = new DynamicDataPanel(mainController);
 		setupFrame();
 		
 	}

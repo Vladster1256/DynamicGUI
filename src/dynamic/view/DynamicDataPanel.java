@@ -28,11 +28,12 @@ import dynamic.controller.DatabaseController;
  * @author VGAR7399
  * @version 1.0
  */
-public class DatabasePanel extends JPanel
+public class DynamicDataPanel extends JPanel
 {
 	private DatabaseController mainController;
 	private SpringLayout baseLayout;
 	private JScrollPane displayPane;
+	private JButton submitQueryButton;
 
 	/**
 	 * this is the constructor for the DatabasePanel class
@@ -41,24 +42,27 @@ public class DatabasePanel extends JPanel
 	 *            this is how we refer the DatabaseController class for this
 	 *            class
 	 */
-	public DatabasePanel(DatabaseController mainController)
+	public DynamicDataPanel(DatabaseController mainController, String table)
 	{
 		this.mainController = mainController;
 		baseLayout = new SpringLayout();
+		submitQueryButton = new JButton();
 
-		setupPanel();
+		setupPanel(table);
 		setupLayout();
 		setupListeners();
 	}
 
-	private void setupPanel()
+	private void setupPanel(String table)
 	{
+		this.setLayout(baseLayout);
+		this.add(submitQueryButton);
 		int startOffset = 20;
 		for (int count = 1; count < 7; count++)
 		{
-			JLabel test = new JLabel("" + count + " label");
+			JLabel dynamicLabel = new JLabel(mainController.getDatabase().getDatabaseColumnNames(table).length);
 			JTextField textField = new JTextField(10);
-			this.add(test);
+			this.add(dynamicLabel);
 			this.add(textField);
 			baseLayout.putConstraint(SpringLayout.NORTH, test, startOffset, SpringLayout.NORTH, this);
 			startOffset += 20;
